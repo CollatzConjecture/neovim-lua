@@ -33,18 +33,18 @@ A modern, fully-featured Neovim configuration with LSP support, tmux integration
 
 ### Alpha Dashboard
 
-<img src="img/6-alpha-nvim.png" alt="Alpha Dashboard Preview" width="70%">
+<img src="img/6-alpha-nvim.png" alt="Alpha Dashboard Preview" style="width: 600px; height: 400px; object-fit: cover; border-radius: 8px; box-shadow: 0 4px 8px rgba(0,0,0,0.2);">
 
 <details>
 <summary><strong>🖼️ View More Screenshots</strong></summary>
 
 <br>
 
-<img src="img/0-alpha-nvim.png" alt="Alpha Dashboard 1" width="45%"> <img src="img/1-alpha-nvim.png" alt="Alpha Dashboard 2" width="45%">
+<img src="img/0-alpha-nvim.png" alt="Alpha Dashboard 1" style="width: 300px; height: 200px; object-fit: cover; border-radius: 6px; margin: 4px; box-shadow: 0 2px 4px rgba(0,0,0,0.2);"> <img src="img/1-alpha-nvim.png" alt="Alpha Dashboard 2" style="width: 300px; height: 200px; object-fit: cover; border-radius: 6px; margin: 4px; box-shadow: 0 2px 4px rgba(0,0,0,0.2);">
 
-<img src="img/2-alpha-nvim.png" alt="Alpha Dashboard 3" width="45%"> <img src="img/3-alpha-nvim.png" alt="Alpha Dashboard 4" width="45%">
+<img src="img/2-alpha-nvim.png" alt="Alpha Dashboard 3" style="width: 300px; height: 200px; object-fit: cover; border-radius: 6px; margin: 4px; box-shadow: 0 2px 4px rgba(0,0,0,0.2);"> <img src="img/3-alpha-nvim.png" alt="Alpha Dashboard 4" style="width: 300px; height: 200px; object-fit: cover; border-radius: 6px; margin: 4px; box-shadow: 0 2px 4px rgba(0,0,0,0.2);">
 
-<img src="img/4-alpha-nvim.png" alt="Alpha Dashboard 5" width="45%"> <img src="img/5-alpha-nvim.png" alt="Alpha Dashboard 6" width="45%">
+<img src="img/4-alpha-nvim.png" alt="Alpha Dashboard 5" style="width: 300px; height: 200px; object-fit: cover; border-radius: 6px; margin: 4px; box-shadow: 0 2px 4px rgba(0,0,0,0.2);"> <img src="img/5-alpha-nvim.png" alt="Alpha Dashboard 6" style="width: 300px; height: 200px; object-fit: cover; border-radius: 6px; margin: 4px; box-shadow: 0 2px 4px rgba(0,0,0,0.2);">
 
 </details>
 
