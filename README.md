@@ -48,27 +48,42 @@ A modern, fully-featured Neovim configuration with LSP support, tmux integration
 
 </details>
 
+<div style="text-align: center; background: linear-gradient(90deg, transparent, #ddd, transparent); height: 1px; margin: 20px 0;"></div>
+
 ### Colorschemes
 
-<p><strong>Catppuccin</strong> (Default)</p>
-<img src="img/catppuccin.png" alt="Catppuccin Theme Preview" style="width: 700px; height: 450px; object-fit: cover; border-radius: 8px; box-shadow: 0 4px 8px rgba(0,0,0,0.2);">
+**🐱 Catppuccin** (Default)
+
+<img src="img/catppuccin.png" alt="Catppuccin Theme Preview" style="width: 700px; height: 450px; object-fit: cover; border-radius: 8px; box-shadow: 0 4px 8px rgba(0,0,0,0.2); margin-top: 10px;">
 
 <details>
 <summary><strong>🎨 View More Colorschemes</strong></summary>
 
 <br>
 
-<p><strong>OneDark</strong></p>
-<img src="img/one-dark.png" alt="OneDark Theme" style="width: 700px; height: 450px; object-fit: cover; border-radius: 8px; box-shadow: 0 4px 8px rgba(0,0,0,0.2); margin-bottom: 20px;">
+<div style="text-align: center; background: linear-gradient(90deg, transparent, #ddd, transparent); height: 1px; margin: 20px 0;"></div>
 
-<p><strong>Kanagawa</strong></p>
-<img src="img/kanagawa.png" alt="Kanagawa Theme" style="width: 700px; height: 450px; object-fit: cover; border-radius: 8px; box-shadow: 0 4px 8px rgba(0,0,0,0.2); margin-bottom: 20px;">
+**🌙 OneDark**
 
-<p><strong>Monokai Pro</strong></p>
-<img src="img/monokai-pro.png" alt="Monokai Pro Theme" style="width: 700px; height: 450px; object-fit: cover; border-radius: 8px; box-shadow: 0 4px 8px rgba(0,0,0,0.2); margin-bottom: 20px;">
+<img src="img/one-dark.png" alt="OneDark Theme" style="width: 700px; height: 450px; object-fit: cover; border-radius: 8px; box-shadow: 0 4px 8px rgba(0,0,0,0.2); margin: 10px 0;">
 
-<p><strong>Rose Pine</strong></p>
-<img src="img/rose-pine.png" alt="Rose Pine Theme" style="width: 700px; height: 450px; object-fit: cover; border-radius: 8px; box-shadow: 0 4px 8px rgba(0,0,0,0.2);">
+<div style="text-align: center; background: linear-gradient(90deg, transparent, #ddd, transparent); height: 1px; margin: 20px 0;"></div>
+
+**🌸 Kanagawa**
+
+<img src="img/kanagawa.png" alt="Kanagawa Theme" style="width: 700px; height: 450px; object-fit: cover; border-radius: 8px; box-shadow: 0 4px 8px rgba(0,0,0,0.2); margin: 10px 0;">
+
+<div style="text-align: center; background: linear-gradient(90deg, transparent, #ddd, transparent); height: 1px; margin: 20px 0;"></div>
+
+**🔥 Monokai Pro**
+
+<img src="img/monokai-pro.png" alt="Monokai Pro Theme" style="width: 700px; height: 450px; object-fit: cover; border-radius: 8px; box-shadow: 0 4px 8px rgba(0,0,0,0.2); margin: 10px 0;">
+
+<div style="text-align: center; background: linear-gradient(90deg, transparent, #ddd, transparent); height: 1px; margin: 20px 0;"></div>
+
+**🌹 Rose Pine**
+
+<img src="img/rose-pine.png" alt="Rose Pine Theme" style="width: 700px; height: 450px; object-fit: cover; border-radius: 8px; box-shadow: 0 4px 8px rgba(0,0,0,0.2); margin: 10px 0;">
 
 </details>
 
