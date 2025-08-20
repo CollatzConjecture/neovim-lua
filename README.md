@@ -104,13 +104,47 @@ A modern, fully-featured Neovim configuration with LSP support, tmux integration
 
 ## 📋 Requirements
 
+### Core Requirements
 - **Neovim** >= 0.8.0
 - **Git** (for plugin management)
 - **Node.js** (for LSP servers)
 - **Python** (for LSP servers)
+
+### Optional but Recommended
 - **tmux** (for tmux integration)
-- **ripgrep** (for telescope live grep)
-- **fd** (for telescope file finder)
+- **ripgrep** (for telescope live grep functionality)
+- **fd** (for faster telescope file finding)
+- **wget** (for Mason package downloads)
+
+### Installation Commands
+
+**macOS (Homebrew):**
+```bash
+# Core tools
+brew install neovim git node python3
+
+# Optional tools
+brew install tmux ripgrep fd wget
+```
+
+**Ubuntu/Debian:**
+```bash
+# Core tools
+sudo apt update
+sudo apt install neovim git nodejs npm python3 python3-pip
+
+# Optional tools
+sudo apt install tmux ripgrep fd-find wget
+```
+
+**Arch Linux:**
+```bash
+# Core tools
+sudo pacman -S neovim git nodejs npm python python-pip
+
+# Optional tools
+sudo pacman -S tmux ripgrep fd wget
+```
 
 ## 🚀 Installation
 
