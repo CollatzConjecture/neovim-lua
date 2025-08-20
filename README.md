@@ -10,22 +10,45 @@ A modern, fully-featured Neovim configuration with LSP support, tmux integration
 
 ## Table of Contents
 
-* [Features](#-features)
-* [Requirements](#-requirements)
-* [Installation](#-installation)
-* [Tmux Integration Setup](#-tmux-integration-setup)
-* [Key Bindings](#-key-bindings)
-* [Colorschemes](#-colorschemes)
-* [Configuration Structure](#-configuration-structure)
-* [Language Server Setup](#-language-server-setup)
-* [Customization](#-customization)
-* [Troubleshooting](#-troubleshooting)
-* [Configuration Check](#-configuration-check)
-* [Resources](#-resources)
-* [Plugins](#plugins)
-* [Contributing](#-contributing)
-* [Disclaimer](#disclaimer)
-* [Thanks](#-thanks)
+- [Features](#-features)
+- [Requirements](#-requirements)
+- [Installation](#-installation)
+- [Tmux Integration Setup](#-tmux-integration-setup)
+- [Key Bindings](#-key-bindings)
+- [Colorschemes](#-colorschemes)
+- [Configuration Structure](#-configuration-structure)
+- [Language Server Setup](#-language-server-setup)
+- [Customization](#-customization)
+- [Troubleshooting](#-troubleshooting)
+- [Configuration Check](#-configuration-check)
+- [Resources](#-resources)
+- [Plugins](#plugins)
+- [Contributing](#-contributing)
+- [Disclaimer](#disclaimer)
+- [Thanks](#-thanks)
+
+## 📸 Screenshots
+
+<div align="center">
+
+### Alpha Dashboard
+
+<img src="img/6-alpha-nvim.png" alt="Alpha Dashboard Preview" width="70%">
+
+<details>
+<summary><strong>🖼️ View More Screenshots</strong></summary>
+
+<br>
+
+<img src="img/0-alpha-nvim.png" alt="Alpha Dashboard 1" width="45%"> <img src="img/1-alpha-nvim.png" alt="Alpha Dashboard 2" width="45%">
+
+<img src="img/2-alpha-nvim.png" alt="Alpha Dashboard 3" width="45%"> <img src="img/3-alpha-nvim.png" alt="Alpha Dashboard 4" width="45%">
+
+<img src="img/4-alpha-nvim.png" alt="Alpha Dashboard 5" width="45%"> <img src="img/5-alpha-nvim.png" alt="Alpha Dashboard 6" width="45%">
+
+</details>
+
+</div>
 
 ## ✨ Features
 
@@ -53,21 +76,31 @@ A modern, fully-featured Neovim configuration with LSP support, tmux integration
 ## 🚀 Installation
 
 1. **Backup your existing configuration** (if any):
+
    ```bash
    mv ~/.config/nvim ~/.config/nvim.backup
    ```
 
 2. **Clone this repository**:
+
    ```bash
-   git clone https://github.com/CollatzConjecture/neovim-lua ~/.config/nvim
+   git clone https://github.com/CollatzConjecture/neovim-lua ~/neovim-config
    ```
 
-3. **Start Neovim**:
+3. **Copy the nvim configuration**:
+
+   ```bash
+   cp -r ~/neovim-config/nvim ~/.config/nvim
+   ```
+
+4. **Start Neovim**:
+
    ```bash
    nvim
    ```
-   
+
    The configuration will automatically:
+
    - Install the plugin manager (lazy.nvim)
    - Download and install all plugins
    - Set up LSP servers via Mason
@@ -77,11 +110,19 @@ A modern, fully-featured Neovim configuration with LSP support, tmux integration
 For seamless navigation between tmux panes and Neovim splits:
 
 1. **Copy the tmux configuration**:
+
+   ```bash
+   cp ~/neovim-config/nvim/tmux.conf ~/.tmux.conf
+   ```
+
+   Or if you've already copied the nvim folder:
+
    ```bash
    cp ~/.config/nvim/tmux.conf ~/.tmux.conf
    ```
 
 2. **Reload tmux configuration**:
+
    ```bash
    tmux source-file ~/.tmux.conf
    ```
@@ -98,10 +139,12 @@ The integration automatically detects whether you're in Neovim or tmux and navig
 ## ⌨️ Key Bindings
 
 ### Leader Keys
+
 - **Leader**: `Space`
 - **Local Leader**: `\`
 
 ### Core Navigation
+
 - `kk` - Exit insert mode
 - `<leader>c` - Clear search highlighting
 - `<leader>r` - Reload configuration
@@ -109,17 +152,20 @@ The integration automatically detects whether you're in Neovim or tmux and navig
 - `<leader>q` - Quit all
 
 ### File Management
+
 - `<leader>e` - Toggle file explorer
 - `<leader>f` - Refresh file explorer
 - `<leader>n` - Find current file in explorer
 
 ### Fuzzy Finding (Telescope)
+
 - `<leader>ff` - Find files
 - `<leader>fg` - Live grep
 - `<leader>fb` - List buffers
 - `<leader>fh` - Help tags
 
 ### LSP Features
+
 - `gd` - Go to definition
 - `gD` - Go to declaration
 - `gi` - Go to implementation
@@ -133,12 +179,14 @@ The integration automatically detects whether you're in Neovim or tmux and navig
 - `]d` - Next diagnostic
 
 ### Terminal
+
 - `Ctrl + t` - Open terminal
 - `Esc` - Exit terminal mode (in terminal)
 
 ## 🎨 Colorschemes
 
 Available colorschemes:
+
 - **Catppuccin** (default)
 - **OneDark**
 - **Kanagawa**
@@ -150,34 +198,47 @@ Switch colorschemes by editing `lua/core/colors.lua`.
 ## 🔧 Configuration Structure
 
 ```
-~/.config/nvim/
-├── init.lua                 # Entry point
-├── lua/
-│   ├── core/
-│   │   ├── autocmds.lua    # Auto-commands
-│   │   ├── colors.lua      # Colorscheme configuration
-│   │   ├── keymaps.lua     # Key mappings
-│   │   ├── lazy.lua        # Plugin manager setup
-│   │   ├── options.lua     # Neovim options
-│   │   └── statusline.lua  # Status line configuration
-│   ├── lsp/
-│   │   └── lspconfig.lua   # LSP configuration
-│   └── plugins/
-│       ├── alpha-nvim.lua  # Dashboard
-│       ├── indent-blankline.lua
-│       ├── none-ls.lua     # External formatters/linters
-│       ├── nvim-cmp.lua    # Auto-completion
-│       ├── nvim-tree.lua   # File explorer
-│       ├── nvim-treesitter.lua
-│       ├── telescope.lua   # Fuzzy finder
-│       └── tmux.lua        # Tmux integration
-├── tmux.conf               # Tmux configuration template
+Repository Structure:
+├── img/                    # Documentation images
+├── nvim/                   # Neovim configuration folder
+│   ├── lua/
+│   │   ├── core/
+│   │   │   ├── autocmds.lua    # Auto-commands
+│   │   │   ├── colors.lua      # Colorscheme configuration
+│   │   │   ├── keymaps.lua     # Key mappings
+│   │   │   ├── lazy.lua        # Plugin manager setup
+│   │   │   ├── options.lua     # Neovim options
+│   │   │   └── statusline.lua  # Status line configuration
+│   │   ├── lsp/
+│   │   │   └── lspconfig.lua   # LSP configuration
+│   │   └── plugins/
+│   │       ├── alpha-nvim.lua  # Dashboard
+│   │       ├── indent-blankline.lua
+│   │       ├── none-ls.lua     # External formatters/linters
+│   │       ├── nvim-cmp.lua    # Auto-completion
+│   │       ├── nvim-tree.lua   # File explorer
+│   │       ├── nvim-treesitter.lua
+│   │       ├── telescope.lua   # Fuzzy finder
+│   │       └── tmux.lua        # Tmux integration
+│   ├── init.lua            # Entry point
+│   └── tmux.conf           # Tmux configuration template
+├── .gitignore
+├── LICENSE
 └── README.md
+
+After Installation (~/.config/nvim/):
+├── lua/
+│   ├── core/              # Core configuration files
+│   ├── lsp/               # LSP configuration
+│   └── plugins/           # Plugin configurations
+├── init.lua                # Entry point
+└── tmux.conf              # Tmux configuration template
 ```
 
 ## 🛠️ Language Server Setup
 
 The configuration automatically installs LSP servers for:
+
 - **Bash** (bashls)
 - **Python** (pyright)
 - **C/C++** (clangd)
@@ -191,18 +252,23 @@ Additional servers can be added in `lua/lsp/lspconfig.lua`.
 ## 🎯 Customization
 
 ### Adding New Plugins
-1. Add plugin specification to `lua/core/lazy.lua`
-2. Create configuration file in `lua/plugins/`
+
+1. Add plugin specification to `~/.config/nvim/lua/core/lazy.lua`
+2. Create configuration file in `~/.config/nvim/lua/plugins/`
 3. Add plugin-specific keymaps to the config file
 
 ### Changing Colorscheme
-Edit `lua/core/colors.lua` and change:
+
+Edit `~/.config/nvim/lua/core/colors.lua` and change:
+
 ```lua
 vim.cmd.colorscheme("your-colorscheme")
 ```
 
 ### Adding LSP Servers
-Edit `lua/lsp/lspconfig.lua` and add to the servers table:
+
+Edit `~/.config/nvim/lua/lsp/lspconfig.lua` and add to the servers table:
+
 ```lua
 local servers = {
   'bashls',
@@ -214,6 +280,7 @@ local servers = {
 ## 🐛 Troubleshooting
 
 ### Plugin Installation Issues
+
 ```bash
 # Clear plugin cache
 rm -rf ~/.local/share/nvim/lazy/
@@ -221,6 +288,7 @@ nvim --headless "+Lazy! sync" +qa
 ```
 
 ### LSP Server Issues
+
 ```bash
 # Check Mason installation
 :Mason
@@ -230,6 +298,7 @@ nvim --headless "+Lazy! sync" +qa
 ```
 
 ### Tmux Navigation Not Working
+
 1. Verify tmux configuration is loaded: `tmux source-file ~/.tmux.conf`
 2. Check if `bc` is installed: `which bc`
 3. Restart tmux session
@@ -237,17 +306,20 @@ nvim --headless "+Lazy! sync" +qa
 ## ✅ Configuration Check
 
 - **Health Check**: Open nvim and run `:checkhealth` to verify everything is working correctly:
+
   ```vim
   :checkhealth
   ```
 
 - **Startup Time**: Check nvim startup performance:
+
   ```bash
   nvim --startuptime startup.log
   nvim startup.log
   ```
 
 - **Plugin Status**: Check plugins configuration and startup time:
+
   ```vim
   :checkhealth lazy
   :Lazy profile
@@ -326,4 +398,4 @@ This setup is not a Framework but it is a configuration that can be used by defa
 
 ## 📄 License
 
-This configuration is open source and available under the [GPL-3.0 License](LICENSE). 
+This configuration is open source and available under the [GPL-3.0 License](LICENSE).
