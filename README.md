@@ -48,6 +48,21 @@ A modern, fully-featured Neovim configuration with LSP support, tmux integration
 
 </details>
 
+### Colorschemes
+
+<img src="img/catppuccin.png" alt="Catppuccin Theme Preview" style="width: 600px; height: 400px; object-fit: cover; border-radius: 8px; box-shadow: 0 4px 8px rgba(0,0,0,0.2);">
+
+<details>
+<summary><strong>🎨 View More Colorschemes</strong></summary>
+
+<br>
+
+<img src="img/one-dark.png" alt="OneDark Theme" style="width: 300px; height: 200px; object-fit: cover; border-radius: 6px; margin: 4px; box-shadow: 0 2px 4px rgba(0,0,0,0.2);"> <img src="img/kanagawa.png" alt="Kanagawa Theme" style="width: 300px; height: 200px; object-fit: cover; border-radius: 6px; margin: 4px; box-shadow: 0 2px 4px rgba(0,0,0,0.2);">
+
+<img src="img/monokai-pro.png" alt="Monokai Pro Theme" style="width: 300px; height: 200px; object-fit: cover; border-radius: 6px; margin: 4px; box-shadow: 0 2px 4px rgba(0,0,0,0.2);"> <img src="img/rose-pine.png" alt="Rose Pine Theme" style="width: 300px; height: 200px; object-fit: cover; border-radius: 6px; margin: 4px; box-shadow: 0 2px 4px rgba(0,0,0,0.2);">
+
+</details>
+
 </div>
 
 ## ✨ Features
