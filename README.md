@@ -105,7 +105,7 @@ A modern, fully-featured Neovim configuration with LSP support, tmux integration
 ## 📋 Requirements
 
 ### Core Requirements
-- **Neovim** >= 0.8.0
+- **Neovim** >= 0.11.0 (uses the native `vim.lsp` configuration API)
 - **Git** (for plugin management)
 - **Node.js** (for LSP servers)
 - **Python** (for LSP servers)

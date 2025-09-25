@@ -144,6 +144,9 @@ lazy.setup({
       dependencies = { 'kyazdani42/nvim-web-devicons' },
     },
 
+    -- Git integration
+    { 'tpope/vim-fugitive' },
+
     -- Git labels
     {
       'lewis6991/gitsigns.nvim',
@@ -199,7 +202,6 @@ lazy.setup({
     },
 
     -- LSP
-    { 'neovim/nvim-lspconfig' },
     {
       'williamboman/mason.nvim',
       build = ':MasonUpdate',

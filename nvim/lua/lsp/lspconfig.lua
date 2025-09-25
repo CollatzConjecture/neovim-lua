@@ -1,21 +1,15 @@
 -----------------------------------------------------------
 -- LSP configuration file for Neovim
--- Sets up language servers using mason.nvim and nvim-lspconfig.
--- Source: https://github.com/neovim/nvim-lspconfig
+-- Sets up language servers using mason.nvim and the native LSP API.
+-- Docs:    https://neovim.io/doc/user/lsp.html
 -- Mason:  https://github.com/williamboman/mason.nvim
 -- Mason-lspconfig: https://github.com/williamboman/mason-lspconfig.nvim
 -- nvim-cmp: https://github.com/hrsh7th/nvim-cmp
 -----------------------------------------------------------
 
--- Setup mason so it can manage external tooling
 require('mason').setup()
 
--- Safely require lspconfig and nvim-cmp capabilities
-local lsp_status_ok, lspconfig = pcall(require, 'lspconfig')
-if not lsp_status_ok then
-  return
-end
-
+-- Safely require nvim-cmp capabilities (skip if missing)
 local cmp_status_ok, cmp_nvim_lsp = pcall(require, 'cmp_nvim_lsp')
 if not cmp_status_ok then
   return
@@ -74,17 +68,19 @@ local servers = {
   'lua_ls',    -- Lua
 }
 
--- Setup mason-lspconfig to ensure servers are installed
+-- Neovim 0.11+: configure via vim.lsp.config and enable explicitly
 require('mason-lspconfig').setup({
   ensure_installed = servers,
+  -- Keep the StyLua CLI around for none-ls, but never auto-enable the removed LSP mode.
+  automatic_enable = false,
 })
 
--- Setup each server with nvim-cmp capabilities and on_attach
 for _, server in ipairs(servers) do
-  lspconfig[server].setup {
+  vim.lsp.config(server, {
     on_attach = on_attach,
     capabilities = capabilities,
-  }
+  })
+  vim.lsp.enable(server)
 end
 
 -----------------------------------------------------------
@@ -112,5 +108,4 @@ vim.keymap.set('n', '[d', vim.diagnostic.goto_prev, opts)
 vim.keymap.set('n', ']d', vim.diagnostic.goto_next, opts)
 vim.keymap.set('n', '<space>q', vim.diagnostic.setloclist, opts)
 
--- For more info and advanced configuration, see:
--- https://github.com/neovim/nvim-lspconfig/blob/master/doc/server_configurations.md
+-- For more info and advanced configuration, see :help lsp.
