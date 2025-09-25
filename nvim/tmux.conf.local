@@ -1,0 +1,230 @@
+# : << 'EOF'
+# Oh my tmux! Local Configuration
+# 💛🩷💙🖤❤️🤍
+
+# -- general -------------------------------------------------------------------
+
+# Set escape time to 0 for faster response (keep current setting)
+set -sg escape-time 0
+
+# Increase history limit
+set -g history-limit 10000
+
+# Keep mouse support on
+set -g mouse on
+
+# -- navigation ----------------------------------------------------------------
+
+# Change prefix to Ctrl-a (already set in oh-my-tmux)
+set -g prefix C-a
+unbind C-b
+
+# Vim-tmux-navigator integration (keep your existing bindings)
+is_vim="ps -o state= -o comm= -t '#{pane_tty}' | grep -iqE '^[^TXZ ]+ +(\\S+\\/)?g?(view|n?vim?x?)(diff)?$'"
+bind-key -n 'C-h' if-shell "$is_vim" 'send-keys C-h'  'select-pane -L' #!important
+bind-key -n 'C-j' if-shell "$is_vim" 'send-keys C-j'  'select-pane -D' #!important
+bind-key -n 'C-k' if-shell "$is_vim" 'send-keys C-k'  'select-pane -U' #!important
+bind-key -n 'C-l' if-shell "$is_vim" 'send-keys C-l'  'select-pane -R' #!important
+
+# Split panes using | and -
+bind | split-window -h #!important
+bind - split-window -v #!important
+unbind '"' #!important
+unbind % #!important
+
+# -- display -------------------------------------------------------------------
+
+# Enable RGB 24-bit colour support
+tmux_conf_24b_colour=auto
+
+# -- theming -------------------------------------------------------------------
+
+# Enable theming
+tmux_conf_theme=enabled
+
+# Color scheme (vibrant colors like your screenshot)
+tmux_conf_theme_colour_1="#080808"    # dark gray
+tmux_conf_theme_colour_2="#303030"    # gray
+tmux_conf_theme_colour_3="#8a8a8a"    # light gray
+tmux_conf_theme_colour_4="#00afff"    # light blue (for active window)
+tmux_conf_theme_colour_5="#ffff00"    # yellow
+tmux_conf_theme_colour_6="#080808"    # dark gray
+tmux_conf_theme_colour_7="#e4e4e4"    # white
+tmux_conf_theme_colour_8="#080808"    # dark gray
+tmux_conf_theme_colour_9="#ffff00"    # yellow (for session)
+tmux_conf_theme_colour_10="#ff00af"   # pink/magenta (for uptime)
+tmux_conf_theme_colour_11="#5fff00"   # green (for battery)
+tmux_conf_theme_colour_12="#8a8a8a"   # light gray
+tmux_conf_theme_colour_13="#e4e4e4"   # white
+tmux_conf_theme_colour_14="#080808"   # dark gray
+tmux_conf_theme_colour_15="#080808"   # dark gray
+tmux_conf_theme_colour_16="#d70000"   # red
+tmux_conf_theme_colour_17="#e4e4e4"   # white
+
+# Window style
+tmux_conf_theme_window_fg="default"
+tmux_conf_theme_window_bg="default"
+
+# Highlight focused pane
+tmux_conf_theme_highlight_focused_pane=false
+tmux_conf_theme_focused_pane_bg="$tmux_conf_theme_colour_2"
+
+# Pane border style
+tmux_conf_theme_pane_border_style=thin
+tmux_conf_theme_pane_border="$tmux_conf_theme_colour_2"
+tmux_conf_theme_pane_active_border="$tmux_conf_theme_colour_4"
+
+# Pane indicator colors
+tmux_conf_theme_pane_indicator="$tmux_conf_theme_colour_4"
+tmux_conf_theme_pane_active_indicator="$tmux_conf_theme_colour_4"
+
+# Status line style
+tmux_conf_theme_message_fg="$tmux_conf_theme_colour_1"
+tmux_conf_theme_message_bg="$tmux_conf_theme_colour_5"
+tmux_conf_theme_message_attr="bold"
+
+tmux_conf_theme_message_command_fg="$tmux_conf_theme_colour_5"
+tmux_conf_theme_message_command_bg="$tmux_conf_theme_colour_1"
+tmux_conf_theme_message_command_attr="bold"
+
+tmux_conf_theme_mode_fg="$tmux_conf_theme_colour_1"
+tmux_conf_theme_mode_bg="$tmux_conf_theme_colour_5"
+tmux_conf_theme_mode_attr="bold"
+
+tmux_conf_theme_status_fg="$tmux_conf_theme_colour_3"
+tmux_conf_theme_status_bg="$tmux_conf_theme_colour_1"
+tmux_conf_theme_status_attr="none"
+
+# Terminal title
+tmux_conf_theme_terminal_title="#h ❐ #S ● #I #W"
+
+# Window status style (inactive windows)
+tmux_conf_theme_window_status_fg="$tmux_conf_theme_colour_3"
+tmux_conf_theme_window_status_bg="$tmux_conf_theme_colour_1"
+tmux_conf_theme_window_status_attr="none"
+tmux_conf_theme_window_status_format="#I #W#{?#{||:#{window_bell_flag},#{window_zoomed_flag}}, ,}#{?window_bell_flag,!,}#{?window_zoomed_flag,Z,}"
+
+# Window status style (active window - bright blue like your screenshot)
+tmux_conf_theme_window_status_current_fg="$tmux_conf_theme_colour_1"
+tmux_conf_theme_window_status_current_bg="$tmux_conf_theme_colour_4"
+tmux_conf_theme_window_status_current_attr="bold"
+tmux_conf_theme_window_status_current_format="#I #W#{?#{||:#{window_bell_flag},#{window_zoomed_flag}}, ,}#{?window_bell_flag,!,}#{?window_zoomed_flag,Z,}"
+
+# Window activity status
+tmux_conf_theme_window_status_activity_fg="default"
+tmux_conf_theme_window_status_activity_bg="default"
+tmux_conf_theme_window_status_activity_attr="underscore"
+
+# Window bell status
+tmux_conf_theme_window_status_bell_fg="$tmux_conf_theme_colour_5"
+tmux_conf_theme_window_status_bell_bg="default"
+tmux_conf_theme_window_status_bell_attr="blink,bold"
+
+# Window last status
+tmux_conf_theme_window_status_last_fg="$tmux_conf_theme_colour_4"
+tmux_conf_theme_window_status_last_bg="$tmux_conf_theme_colour_2"
+tmux_conf_theme_window_status_last_attr="none"
+
+# Status left/right sections separators (proper powerline separators with Unicode)
+tmux_conf_theme_left_separator_main='\uE0B0'  #
+tmux_conf_theme_left_separator_sub='\uE0B1'   #
+tmux_conf_theme_right_separator_main='\uE0B2' #
+tmux_conf_theme_right_separator_sub='\uE0B3'  #
+
+# Status left content (colorful segments like your screenshot)
+tmux_conf_theme_status_left=" ❐ #S | ↑#{?uptime_y, #{uptime_y}y,}#{?uptime_d, #{uptime_d}d,}#{?uptime_h, #{uptime_h}h,}#{?uptime_m, #{uptime_m}m,} "
+
+# Status right content (with battery bar like your screenshot)
+tmux_conf_theme_status_right=" #{prefix}#{mouse}#{pairing}#{synchronized} ⚡#{battery_bar} #{battery_percentage} , %R , %d %b | #{username}#{root} | #{hostname} "
+
+# Status left style (yellow session, pink uptime)
+tmux_conf_theme_status_left_fg="$tmux_conf_theme_colour_6,$tmux_conf_theme_colour_7,$tmux_conf_theme_colour_8"
+tmux_conf_theme_status_left_bg="$tmux_conf_theme_colour_9,$tmux_conf_theme_colour_10,$tmux_conf_theme_colour_11"
+tmux_conf_theme_status_left_attr="bold,none,none"
+
+# Status right style (colorful segments)
+tmux_conf_theme_status_right_fg="$tmux_conf_theme_colour_12,$tmux_conf_theme_colour_13,$tmux_conf_theme_colour_14"
+tmux_conf_theme_status_right_bg="$tmux_conf_theme_colour_15,$tmux_conf_theme_colour_16,$tmux_conf_theme_colour_17"
+tmux_conf_theme_status_right_attr="none,none,bold"
+
+# Pairing indicator
+tmux_conf_theme_pairing="⚇"
+tmux_conf_theme_pairing_fg="none"
+tmux_conf_theme_pairing_bg="none"
+tmux_conf_theme_pairing_attr="none"
+
+# Prefix indicator
+tmux_conf_theme_prefix="⌨"
+tmux_conf_theme_prefix_fg="none"
+tmux_conf_theme_prefix_bg="none"
+tmux_conf_theme_prefix_attr="none"
+
+# Mouse indicator
+tmux_conf_theme_mouse="↗"
+tmux_conf_theme_mouse_fg="none"
+tmux_conf_theme_mouse_bg="none"
+tmux_conf_theme_mouse_attr="none"
+
+# Root indicator
+tmux_conf_theme_root="!"
+tmux_conf_theme_root_fg="none"
+tmux_conf_theme_root_bg="none"
+tmux_conf_theme_root_attr="bold,blink"
+
+# Synchronized indicator
+tmux_conf_theme_synchronized="⚏"
+tmux_conf_theme_synchronized_fg="none"
+tmux_conf_theme_synchronized_bg="none"
+tmux_conf_theme_synchronized_attr="none"
+
+# Battery bar symbols (revert to better looking version)
+tmux_conf_battery_bar_symbol_full="◼"
+tmux_conf_battery_bar_symbol_empty="◻"
+
+# Battery bar length (auto length for better look)
+tmux_conf_battery_bar_length="auto"
+
+# Battery bar palette (vibrant colors)
+tmux_conf_battery_bar_palette="gradient(#ff0000,#ff4500,#ff8c00,#ffd700,#adff2f,#00ff00)"
+
+# Battery status symbols
+tmux_conf_battery_status_charging="↑"
+tmux_conf_battery_status_discharging="↓"
+
+# Clock style
+tmux_conf_theme_clock_colour="$tmux_conf_theme_colour_4"
+tmux_conf_theme_clock_style="24"
+
+# -- clipboard -----------------------------------------------------------------
+
+# Copy to OS clipboard
+tmux_conf_copy_to_os_clipboard=true
+
+# -- user customizations -------------------------------------------------------
+
+# Keep current window path for new windows and panes
+tmux_conf_new_window_retain_current_path=true
+tmux_conf_new_pane_retain_current_path=true
+
+# Don't rename windows automatically
+set-option -g allow-rename off #!important
+
+# Enable vim motions in copy mode
+setw -g mode-keys vi #!important
+
+# Enhanced key bindings
+bind -n M-1 select-window -t 1 #!important
+bind -n M-2 select-window -t 2 #!important
+bind -n M-3 select-window -t 3 #!important
+bind -n M-4 select-window -t 4 #!important
+bind -n M-5 select-window -t 5 #!important
+bind -n M-6 select-window -t 6 #!important
+bind -n M-7 select-window -t 7 #!important
+bind -n M-8 select-window -t 8 #!important
+bind -n M-9 select-window -t 9 #!important
+
+# Better session management
+bind N command-prompt -p "New session:" "new-session -d -s '%%'" #!important
+bind X confirm-before -p "Kill session #S? (y/n)" kill-session #!important
+
+# 'EOF'

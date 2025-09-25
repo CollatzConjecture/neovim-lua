@@ -180,32 +180,71 @@ sudo pacman -S tmux ripgrep fd wget
 
 ## 🔧 Tmux Integration Setup
 
-For seamless navigation between tmux panes and Neovim splits:
+This configuration includes a beautiful oh-my-tmux setup with colorful status bar, powerline separators, and vim integration.
 
-1. **Copy the tmux configuration**:
+### Complete Tmux Setup
+
+1. **Copy both tmux configuration files**:
 
    ```bash
-   cp ~/neovim-config/nvim/tmux.conf ~/.tmux.conf
+   # Main oh-my-tmux configuration
+   cp ~/neovim-config/nvim/tmux.conf ~/.config/tmux/tmux.conf
+
+   # Custom local configuration with colorful theme
+   cp ~/neovim-config/nvim/tmux.conf.local ~/.config/tmux/tmux.conf.local
    ```
 
    Or if you've already copied the nvim folder:
 
    ```bash
-   cp ~/.config/nvim/tmux.conf ~/.tmux.conf
+   mkdir -p ~/.config/tmux
+   cp ~/.config/nvim/tmux.conf ~/.config/tmux/tmux.conf
+   cp ~/.config/nvim/tmux.conf.local ~/.config/tmux/tmux.conf.local
    ```
 
 2. **Reload tmux configuration**:
 
    ```bash
-   tmux source-file ~/.tmux.conf
+   tmux source-file ~/.config/tmux/tmux.conf
    ```
 
-3. **Navigation keys**:
-   - `Ctrl + h` - Move left
-   - `Ctrl + j` - Move down
-   - `Ctrl + k` - Move up
-   - `Ctrl + l` - Move right
-   - `Ctrl + \` - Move to previous pane/split
+### Features
+
+- **🎨 Colorful status bar** with oh-my-tmux theming
+- **⚡ Battery indicator** with colorful gradient bar
+- **📡 Powerline separators** with angled shapes
+- **🚀 Vim integration** with vim-tmux-navigator
+- **⌨️ Vi mode keys** in copy mode
+- **🖱️ Mouse support** enabled
+
+### Key Bindings
+
+**Prefix Key**: `Ctrl + a` (changed from default `Ctrl + b`)
+
+**Window Management**:
+- `Ctrl + a` + `c` - Create new window
+- `Ctrl + a` + `|` - Split window horizontally
+- `Ctrl + a` + `-` - Split window vertically
+- `Ctrl + a` + `Ctrl + h` - Previous window
+- `Ctrl + a` + `Ctrl + l` - Next window
+- `Alt + 1-9` - Jump directly to window 1-9
+
+**Pane Navigation** (works seamlessly with Neovim):
+- `Ctrl + h` - Move left (pane/vim split)
+- `Ctrl + j` - Move down (pane/vim split)
+- `Ctrl + k` - Move up (pane/vim split)
+- `Ctrl + l` - Move right (pane/vim split)
+
+**Copy Mode** (vim-style):
+- `Ctrl + a` + `[` - Enter copy mode
+- `h/j/k/l` - Navigate with vim motions
+- `v` - Start visual selection
+- `y` - Copy selection
+- `/` and `?` - Search
+
+**Session Management**:
+- `Ctrl + a` + `N` - Create new session
+- `Ctrl + a` + `X` - Kill current session
 
 The integration automatically detects whether you're in Neovim or tmux and navigates accordingly.
 
@@ -409,6 +448,8 @@ nvim --headless "+Lazy! sync" +qa
 - [Lazy.nvim Documentation](https://lazy.folke.io/)
 - [vim-tmux-navigator](https://github.com/christoomey/vim-tmux-navigator)
 - [LSP Configuration](https://github.com/neovim/nvim-lspconfig)
+- [Oh My Tmux](https://github.com/gpakosz/.tmux) - Beautiful tmux configuration
+- [Vim Cheat Sheet](https://vim.rtorr.com/) - Learn vim commands and motions
 - [Lua - Neovim docs](https://neovim.io/doc/user/lua.html)
 - [Lua-guide - Neovim docs](https://neovim.io/doc/user/lua-guide.html#lua-guide)
 - [Everything you need to know to configure neovim using lua](https://vonheikemen.github.io/devlog/tools/configuring-neovim-using-lua/)
