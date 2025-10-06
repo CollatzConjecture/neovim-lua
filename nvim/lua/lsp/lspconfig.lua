@@ -42,17 +42,17 @@ local on_attach = function(client, bufnr)
   -- LSP keymaps (buffer-local)
   local bufopts = { noremap = true, silent = true, buffer = bufnr }
   -- Navigation
-  vim.keymap.set('n', 'gd', vim.lsp.buf.definition, bufopts)
-  vim.keymap.set('n', 'gD', vim.lsp.buf.declaration, bufopts)
-  vim.keymap.set('n', 'gi', vim.lsp.buf.implementation, bufopts)
-  vim.keymap.set('n', 'gr', vim.lsp.buf.references, bufopts)
-  vim.keymap.set('n', 'K', vim.lsp.buf.hover, bufopts)
+  vim.keymap.set('n', 'gd', vim.lsp.buf.definition, vim.tbl_extend('force', bufopts, { desc = 'Go to definition' }))
+  vim.keymap.set('n', 'gD', vim.lsp.buf.declaration, vim.tbl_extend('force', bufopts, { desc = 'Go to declaration' }))
+  vim.keymap.set('n', 'gi', vim.lsp.buf.implementation, vim.tbl_extend('force', bufopts, { desc = 'Go to implementation' }))
+  vim.keymap.set('n', 'gr', vim.lsp.buf.references, vim.tbl_extend('force', bufopts, { desc = 'Show references' }))
+  vim.keymap.set('n', 'K', vim.lsp.buf.hover, vim.tbl_extend('force', bufopts, { desc = 'Show hover documentation' }))
   -- Actions
-  vim.keymap.set('n', '<leader>rn', vim.lsp.buf.rename, bufopts)
-  vim.keymap.set('n', '<leader>ca', vim.lsp.buf.code_action, bufopts)
+  vim.keymap.set('n', '<leader>rn', vim.lsp.buf.rename, vim.tbl_extend('force', bufopts, { desc = 'Rename symbol' }))
+  vim.keymap.set('n', '<leader>ca', vim.lsp.buf.code_action, vim.tbl_extend('force', bufopts, { desc = 'Code action' }))
   vim.keymap.set('n', '<leader>f', function()
     vim.lsp.buf.format({ async = true })
-  end, bufopts)
+  end, vim.tbl_extend('force', bufopts, { desc = 'Format buffer' }))
 end
 
 -----------------------------------------------------------
@@ -68,26 +68,40 @@ local servers = {
   'lua_ls',    -- Lua
 }
 
--- Neovim 0.11+: configure via vim.lsp.config and enable explicitly
+-- Setup mason-lspconfig to auto-install and configure servers
 require('mason-lspconfig').setup({
   ensure_installed = servers,
-  -- Keep the StyLua CLI around for none-ls, but never auto-enable the removed LSP mode.
-  automatic_enable = false,
+  handlers = {
+    -- Default handler for all servers
+    function(server_name)
+      require('lspconfig')[server_name].setup({
+        on_attach = on_attach,
+        capabilities = capabilities,
+      })
+    end,
+  },
 })
-
-for _, server in ipairs(servers) do
-  vim.lsp.config(server, {
-    on_attach = on_attach,
-    capabilities = capabilities,
-  })
-  vim.lsp.enable(server)
-end
 
 -----------------------------------------------------------
 -- Diagnostic UI settings and keymaps
 -----------------------------------------------------------
+
+-- Define diagnostic signs
+local signs = { Error = "󰅚 ", Warn = "󰀪 ", Hint = "󰌶 ", Info = " " }
+for type, icon in pairs(signs) do
+  local hl = "DiagnosticSign" .. type
+  vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = hl })
+end
+
 vim.diagnostic.config({
+  virtual_text = {
+    prefix = '●',
+    spacing = 4,
+  },
+  signs = true,
+  underline = true,
   update_in_insert = true,
+  severity_sort = true,
   float = {
     focusable = false,
     style = "minimal",
@@ -103,9 +117,9 @@ vim.cmd([[autocmd! CursorHold,CursorHoldI * lua vim.diagnostic.open_float(nil, {
 
 -- Diagnostic navigation keymaps (global)
 local opts = { noremap = true, silent = true }
-vim.keymap.set('n', 'gl', vim.diagnostic.open_float, opts)
-vim.keymap.set('n', '[d', vim.diagnostic.goto_prev, opts)
-vim.keymap.set('n', ']d', vim.diagnostic.goto_next, opts)
-vim.keymap.set('n', '<space>q', vim.diagnostic.setloclist, opts)
+vim.keymap.set('n', 'gl', vim.diagnostic.open_float, vim.tbl_extend('force', opts, { desc = 'Show line diagnostics' }))
+vim.keymap.set('n', '[d', vim.diagnostic.goto_prev, vim.tbl_extend('force', opts, { desc = 'Go to previous diagnostic' }))
+vim.keymap.set('n', ']d', vim.diagnostic.goto_next, vim.tbl_extend('force', opts, { desc = 'Go to next diagnostic' }))
+vim.keymap.set('n', '<space>q', vim.diagnostic.setloclist, vim.tbl_extend('force', opts, { desc = 'Add diagnostics to location list' }))
 
 -- For more info and advanced configuration, see :help lsp.

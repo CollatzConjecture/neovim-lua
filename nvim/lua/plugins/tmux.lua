@@ -28,11 +28,11 @@ vim.g.tmux_navigator_no_wrap = 1
 
 -- Key mappings for tmux navigation (consistent with default tmux prefix + hjkl)
 local opts = { noremap = true, silent = true }
-vim.keymap.set('n', '<C-h>', ':TmuxNavigateLeft<CR>', opts)
-vim.keymap.set('n', '<C-j>', ':TmuxNavigateDown<CR>', opts)
-vim.keymap.set('n', '<C-k>', ':TmuxNavigateUp<CR>', opts)
-vim.keymap.set('n', '<C-l>', ':TmuxNavigateRight<CR>', opts)
-vim.keymap.set('n', '<C-\\>', ':TmuxNavigatePrevious<CR>', opts)
+vim.keymap.set('n', '<C-h>', ':TmuxNavigateLeft<CR>', vim.tbl_extend('force', opts, { desc = 'Navigate to left pane' }))
+vim.keymap.set('n', '<C-j>', ':TmuxNavigateDown<CR>', vim.tbl_extend('force', opts, { desc = 'Navigate to pane below' }))
+vim.keymap.set('n', '<C-k>', ':TmuxNavigateUp<CR>', vim.tbl_extend('force', opts, { desc = 'Navigate to pane above' }))
+vim.keymap.set('n', '<C-l>', ':TmuxNavigateRight<CR>', vim.tbl_extend('force', opts, { desc = 'Navigate to right pane' }))
+vim.keymap.set('n', '<C-\\>', ':TmuxNavigatePrevious<CR>', vim.tbl_extend('force', opts, { desc = 'Navigate to previous pane' }))
 
 -- Additional tmux integration features
 -- Preserve vim splits when navigating

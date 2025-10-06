@@ -207,6 +207,7 @@ lazy.setup({
       build = ':MasonUpdate',
     },
     { 'williamboman/mason-lspconfig.nvim' },
+    { 'neovim/nvim-lspconfig' },
 
     -- Telescope (fuzzy finder)
     {
