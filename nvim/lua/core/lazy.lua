@@ -150,13 +150,20 @@ lazy.setup({
     -- Git labels
     {
       'lewis6991/gitsigns.nvim',
-      lazy = true,
+      event = { 'BufReadPre', 'BufNewFile' },
       dependencies = {
         'nvim-lua/plenary.nvim',
         'kyazdani42/nvim-web-devicons',
       },
       config = function()
-        require('gitsigns').setup{}
+        require('gitsigns').setup{
+          watch_gitdir = {
+            interval = 1000,
+            follow_files = true
+          },
+          current_line_blame = false,
+          update_debounce = 100,
+        }
       end
     },
 
