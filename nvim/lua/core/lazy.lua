@@ -147,6 +147,15 @@ lazy.setup({
     -- Git integration
     { 'tpope/vim-fugitive' },
 
+    -- Terminal Git UI
+    {
+      'kdheepak/lazygit.nvim',
+      dependencies = { 'nvim-lua/plenary.nvim' },
+      config = function()
+        require('plugins.lazygit')
+      end,
+    },
+
     -- Git labels
     {
       'lewis6991/gitsigns.nvim',

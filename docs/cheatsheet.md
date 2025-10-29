@@ -60,6 +60,8 @@
 - `<leader>gp`: preview current hunk (shows diff in popup).
 - `<leader>gr`: manually refresh git signs (force update).
 - `<leader>gb`: show git blame for current line.
+- `:LazyGit`: launch the LazyGit floating UI inside Neovim (requires `lazygit` binary).
+- `:help gitsigns.txt`: open the full Gitsigns help (try `:help gitsigns.<topic>` for sections like `:help gitsigns.keymaps`).
 
 ## Terminal Shortcuts
 - `Ctrl+t`: open the embedded terminal.

@@ -96,4 +96,3 @@ end
 M.setup_global()
 
 return M
-
