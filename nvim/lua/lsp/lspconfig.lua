@@ -15,6 +15,8 @@ if not cmp_status_ok then
   return
 end
 
+local keymaps = require('core/keymaps')
+
 -- Add additional capabilities supported by nvim-cmp
 local capabilities = vim.lsp.protocol.make_client_capabilities()
 capabilities = cmp_nvim_lsp.default_capabilities(capabilities)
@@ -39,20 +41,24 @@ local on_attach = function(client, bufnr)
     })
   end
 
-  -- LSP keymaps (buffer-local)
-  local bufopts = { noremap = true, silent = true, buffer = bufnr }
-  -- Navigation
-  vim.keymap.set('n', 'gd', vim.lsp.buf.definition, vim.tbl_extend('force', bufopts, { desc = 'Go to definition' }))
-  vim.keymap.set('n', 'gD', vim.lsp.buf.declaration, vim.tbl_extend('force', bufopts, { desc = 'Go to declaration' }))
-  vim.keymap.set('n', 'gi', vim.lsp.buf.implementation, vim.tbl_extend('force', bufopts, { desc = 'Go to implementation' }))
-  vim.keymap.set('n', 'gr', vim.lsp.buf.references, vim.tbl_extend('force', bufopts, { desc = 'Show references' }))
-  vim.keymap.set('n', 'K', vim.lsp.buf.hover, vim.tbl_extend('force', bufopts, { desc = 'Show hover documentation' }))
-  -- Actions
-  vim.keymap.set('n', '<leader>rn', vim.lsp.buf.rename, vim.tbl_extend('force', bufopts, { desc = 'Rename symbol' }))
-  vim.keymap.set('n', '<leader>ca', vim.lsp.buf.code_action, vim.tbl_extend('force', bufopts, { desc = 'Code action' }))
-  vim.keymap.set('n', '<leader>f', function()
-    vim.lsp.buf.format({ async = true })
-  end, vim.tbl_extend('force', bufopts, { desc = 'Format buffer' }))
+  keymaps.setup_lsp(bufnr)
+
+  -- Tell LuaLS about Neovim globals when it attaches
+  if client.name == 'lua_ls' then
+    client.notify("workspace/didChangeConfiguration", {
+      settings = {
+        Lua = {
+          runtime = { version = "LuaJIT" },
+          diagnostics = { globals = { 'vim' } },
+          workspace = {
+            checkThirdParty = false,
+            library = vim.api.nvim_get_runtime_file("", true),
+          },
+          telemetry = { enable = false },
+        },
+      },
+    })
+  end
 end
 
 -----------------------------------------------------------
@@ -74,10 +80,28 @@ require('mason-lspconfig').setup({
   handlers = {
     -- Default handler for all servers
     function(server_name)
-      require('lspconfig')[server_name].setup({
-        on_attach = on_attach,
-        capabilities = capabilities,
-      })
+      if server_name == 'lua_ls' then
+        require('lspconfig')[server_name].setup({
+          on_attach = on_attach,
+          capabilities = capabilities,
+          settings = {
+            Lua = {
+              runtime = { version = 'LuaJIT' },
+              diagnostics = { globals = { 'vim' } },
+              workspace = {
+                checkThirdParty = false,
+                library = vim.api.nvim_get_runtime_file("", true),
+              },
+              telemetry = { enable = false },
+            },
+          },
+        })
+      else
+        require('lspconfig')[server_name].setup({
+          on_attach = on_attach,
+          capabilities = capabilities,
+        })
+      end
     end,
   },
 })
@@ -86,14 +110,21 @@ require('mason-lspconfig').setup({
 -- Diagnostic UI settings and keymaps
 -----------------------------------------------------------
 
--- Define diagnostic signs
-local signs = { Error = "󰅚 ", Warn = "󰀪 ", Hint = "󰌶 ", Info = " " }
-for type, icon in pairs(signs) do
-  local hl = "DiagnosticSign" .. type
-  vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = hl })
-end
-
 vim.diagnostic.config({
+  signs = {
+    text = {
+      [vim.diagnostic.severity.ERROR] = "󰅚 ",
+      [vim.diagnostic.severity.WARN] = "󰀪 ",
+      [vim.diagnostic.severity.HINT] = "󰌶 ",
+      [vim.diagnostic.severity.INFO] = " ",
+    },
+    numhl = {
+      [vim.diagnostic.severity.ERROR] = "DiagnosticSignError",
+      [vim.diagnostic.severity.WARN] = "DiagnosticSignWarn",
+      [vim.diagnostic.severity.HINT] = "DiagnosticSignHint",
+      [vim.diagnostic.severity.INFO] = "DiagnosticSignInfo",
+    },
+  },
   virtual_text = {
     prefix = '●',
     spacing = 4,
@@ -114,12 +145,5 @@ vim.diagnostic.config({
 
 -- Show line diagnostics automatically in hover window
 vim.cmd([[autocmd! CursorHold,CursorHoldI * lua vim.diagnostic.open_float(nil, { focus = false })]])
-
--- Diagnostic navigation keymaps (global)
-local opts = { noremap = true, silent = true }
-vim.keymap.set('n', 'gl', vim.diagnostic.open_float, vim.tbl_extend('force', opts, { desc = 'Show line diagnostics' }))
-vim.keymap.set('n', '[d', vim.diagnostic.goto_prev, vim.tbl_extend('force', opts, { desc = 'Go to previous diagnostic' }))
-vim.keymap.set('n', ']d', vim.diagnostic.goto_next, vim.tbl_extend('force', opts, { desc = 'Go to next diagnostic' }))
-vim.keymap.set('n', '<space>q', vim.diagnostic.setloclist, vim.tbl_extend('force', opts, { desc = 'Add diagnostics to location list' }))
 
 -- For more info and advanced configuration, see :help lsp.

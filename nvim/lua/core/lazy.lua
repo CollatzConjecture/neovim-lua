@@ -163,6 +163,9 @@ lazy.setup({
           },
           current_line_blame = false,
           update_debounce = 100,
+          on_attach = function(bufnr)
+            require('core/keymaps').setup_gitsigns(bufnr)
+          end,
         }
       end
     },
@@ -242,6 +245,7 @@ lazy.setup({
     -- none-ls (external formatters/linters)
     {
       'nvimtools/none-ls.nvim',
+      dependencies = { 'nvim-lua/plenary.nvim' },
       config = function()
         require('plugins.none-ls')
       end,

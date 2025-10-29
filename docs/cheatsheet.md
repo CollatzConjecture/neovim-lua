@@ -1,5 +1,17 @@
 # Neovim Lua Config Cheat Sheet
 
+## Lazy (Plugin Manager)
+- `:Lazy`: open Lazy UI to manage plugins.
+- `:Lazy update`: update all plugins to their latest versions.
+- `:Lazy sync`: install missing plugins and update existing ones.
+- `:Lazy install`: install missing plugins.
+- `:Lazy clean`: remove unused/disabled plugins.
+- `:Lazy check`: check for plugin updates (without installing).
+- `:Lazy restore`: restore plugins to the state in the lockfile.
+- `:Lazy profile`: show plugin loading times (performance profiling).
+- `:Lazy log`: view recent plugin changes and updates.
+- Inside Lazy UI: press `?` for keybinding help, `x` to clear finished tasks, `l` to view logs.
+
 ## NvimTree Quick Help
 - `g?` inside the tree: open the built-in NvimTree help/mappings window.
 - `<leader>e`: toggle the file explorer.
@@ -23,6 +35,13 @@
 - `<leader>fb`: list buffers.
 - `<leader>fh`: search help tags.
 
+## Mason (LSP/Tool Manager)
+- `:Mason`: open Mason UI to manage LSP servers, formatters, and linters.
+- `:MasonUpdate`: update Mason registry and installed packages.
+- `:MasonInstall <package>`: install a specific package (e.g., `:MasonInstall lua-language-server`).
+- `:MasonUninstall <package>`: uninstall a package.
+- `:MasonLog`: view Mason installation logs (useful for debugging).
+
 ## LSP Essentials
 - `gd`: go to definition.
 - `gD`: go to declaration.
@@ -34,6 +53,7 @@
 - `<leader>f`: format buffer.
 - `gl`: show line diagnostics.
 - `[d` / `]d`: previous / next diagnostic.
+- `:LspRestart {server}` restarts a language server; `:LspInfo` shows which servers are attached.
 
 ## Terminal Shortcuts
 - `Ctrl+t`: open the embedded terminal.
@@ -49,3 +69,4 @@
 - Pane navigation with Neovim splits: `Ctrl+h/j/k/l`.
 - Copy mode: `Ctrl+a` then `[`; use `h/j/k/l` to move, `v` to select, `y` to yank.
 - Session management: `Ctrl+a` then `N` to create, `Ctrl+a` then `X` to kill.
+- `nvim` Git helpers: `<leader>gp` previews the current hunk via gitsigns.
