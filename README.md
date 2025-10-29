@@ -14,7 +14,7 @@ A modern, fully-featured Neovim configuration with LSP support, tmux integration
 - [Requirements](#-requirements)
 - [Installation](#-installation)
 - [Tmux Integration Setup](#-tmux-integration-setup)
-- [Key Bindings](#-key-bindings)
+- [Cheat Sheet](#-cheat-sheet)
 - [Colorschemes](#-colorschemes)
 - [Configuration Structure](#-configuration-structure)
 - [Language Server Setup](#-language-server-setup)
@@ -217,83 +217,10 @@ This configuration includes a beautiful oh-my-tmux setup with colorful status ba
 - **⌨️ Vi mode keys** in copy mode
 - **🖱️ Mouse support** enabled
 
-### Key Bindings
+## 📝 Cheat Sheet
 
-**Prefix Key**: `Ctrl + a` (changed from default `Ctrl + b`)
-
-**Window Management**:
-- `Ctrl + a` + `c` - Create new window
-- `Ctrl + a` + `|` - Split window horizontally
-- `Ctrl + a` + `-` - Split window vertically
-- `Ctrl + a` + `Ctrl + h` - Previous window
-- `Ctrl + a` + `Ctrl + l` - Next window
-- `Alt + 1-9` - Jump directly to window 1-9
-
-**Pane Navigation** (works seamlessly with Neovim):
-- `Ctrl + h` - Move left (pane/vim split)
-- `Ctrl + j` - Move down (pane/vim split)
-- `Ctrl + k` - Move up (pane/vim split)
-- `Ctrl + l` - Move right (pane/vim split)
-
-**Copy Mode** (vim-style):
-- `Ctrl + a` + `[` - Enter copy mode
-- `h/j/k/l` - Navigate with vim motions
-- `v` - Start visual selection
-- `y` - Copy selection
-- `/` and `?` - Search
-
-**Session Management**:
-- `Ctrl + a` + `N` - Create new session
-- `Ctrl + a` + `X` - Kill current session
-
-The integration automatically detects whether you're in Neovim or tmux and navigates accordingly.
-
-## ⌨️ Key Bindings
-
-### Leader Keys
-
-- **Leader**: `Space`
-- **Local Leader**: `\`
-
-### Core Navigation
-
-- `kk` - Exit insert mode
-- `<leader>c` - Clear search highlighting
-- `<leader>r` - Reload configuration
-- `<leader>s` - Save file
-- `<leader>q` - Quit all
-
-### File Management
-
-- `<leader>e` - Toggle file explorer
-- `<leader>f` - Refresh file explorer
-- `<leader>n` - Find current file in explorer
-
-### Fuzzy Finding (Telescope)
-
-- `<leader>ff` - Find files
-- `<leader>fg` - Live grep
-- `<leader>fb` - List buffers
-- `<leader>fh` - Help tags
-
-### LSP Features
-
-- `gd` - Go to definition
-- `gD` - Go to declaration
-- `gi` - Go to implementation
-- `gr` - Find references
-- `K` - Show hover documentation
-- `<leader>rn` - Rename symbol
-- `<leader>ca` - Code actions
-- `<leader>f` - Format code
-- `gl` - Show line diagnostics
-- `[d` - Previous diagnostic
-- `]d` - Next diagnostic
-
-### Terminal
-
-- `Ctrl + t` - Open terminal
-- `Esc` - Exit terminal mode (in terminal)
+Looking for key bindings or quick tips? Everything now lives in [docs/cheatsheet.md](docs/cheatsheet.md).  
+That reference also reminds you that pressing `g?` inside NvimTree opens its built-in help overlay.
 
 ## 🎨 Colorschemes
 
