@@ -115,6 +115,7 @@ A modern, fully-featured Neovim configuration with LSP support, tmux integration
 - **ripgrep** (for telescope live grep functionality)
 - **fd** (for faster telescope file finding)
 - **wget** (for Mason package downloads)
+- **LazyGit** (enables the `:LazyGit` floating Git UI inside Neovim)
 
 ### Installation Commands
 
@@ -406,6 +407,7 @@ nvim --headless "+Lazy! sync" +qa
 [nvim-autopairs](https://github.com/windwp/nvim-autopairs) - Autopairs for neovim written by lua
 
 [gitsigns.nvim](https://github.com/lewis6991/gitsigns.nvim) - Git integration for buffers
+[lazygit.nvim](https://github.com/kdheepak/lazygit.nvim) - Floating LazyGit terminal within Neovim
 
 [alpha-nvim](https://github.com/goolord/alpha-nvim) - A lua powered greeter like vim-startify / dashboard-nvim
 
