@@ -41,6 +41,7 @@
 
 ## Tmux Integration
 - Prefix key: `Ctrl+a`.
+- `Ctrl+a` then `?`: open tmux’s built-in keybinding help page.
 - `Ctrl+a` then `c`: create window.
 - `Ctrl+a` then `|` / `-`: split horizontally / vertically.
 - `Ctrl+a` then `Ctrl+h` / `Ctrl+l`: previous / next window.
@@ -48,4 +49,3 @@
 - Pane navigation with Neovim splits: `Ctrl+h/j/k/l`.
 - Copy mode: `Ctrl+a` then `[`; use `h/j/k/l` to move, `v` to select, `y` to yank.
 - Session management: `Ctrl+a` then `N` to create, `Ctrl+a` then `X` to kill.
-
