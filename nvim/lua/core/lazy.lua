@@ -158,11 +158,13 @@ lazy.setup({
       config = function()
         require('gitsigns').setup{
           watch_gitdir = {
-            interval = 1000,
+            interval = 500,  -- Check for git changes every 500ms (faster refresh)
             follow_files = true
           },
           current_line_blame = false,
           update_debounce = 100,
+          -- Auto-refresh after saving
+          attach_to_untracked = true,
           on_attach = function(bufnr)
             require('core/keymaps').setup_gitsigns(bufnr)
           end,

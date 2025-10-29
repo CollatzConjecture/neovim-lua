@@ -55,6 +55,12 @@
 - `[d` / `]d`: previous / next diagnostic.
 - `:LspRestart {server}` restarts a language server; `:LspInfo` shows which servers are attached.
 
+## Git Integration (Gitsigns)
+- Sign colors: 🟢 Green = added, 🟡 Yellow = modified, 🔴 Red = deleted (vs last commit).
+- `<leader>gp`: preview current hunk (shows diff in popup).
+- `<leader>gr`: manually refresh git signs (force update).
+- `<leader>gb`: show git blame for current line.
+
 ## Terminal Shortcuts
 - `Ctrl+t`: open the embedded terminal.
 - In terminal mode: `Esc` returns to normal mode.
@@ -69,4 +75,3 @@
 - Pane navigation with Neovim splits: `Ctrl+h/j/k/l`.
 - Copy mode: `Ctrl+a` then `[`; use `h/j/k/l` to move, `v` to select, `y` to yank.
 - Session management: `Ctrl+a` then `N` to create, `Ctrl+a` then `X` to kill.
-- `nvim` Git helpers: `<leader>gp` previews the current hunk via gitsigns.
