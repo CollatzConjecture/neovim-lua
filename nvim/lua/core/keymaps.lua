@@ -90,6 +90,9 @@ function M.setup_gitsigns(bufnr)
   vim.keymap.set('n', '<leader>gp', gs.preview_hunk, { buffer = bufnr, desc = 'Git preview hunk' })
   vim.keymap.set('n', '<leader>gr', gs.refresh, { buffer = bufnr, desc = 'Git refresh signs' })
   vim.keymap.set('n', '<leader>gb', gs.blame_line, { buffer = bufnr, desc = 'Git blame line' })
+  vim.keymap.set('n', '<leader>gR', gs.reset_hunk, { buffer = bufnr, desc = 'Git reset hunk' })
+  vim.keymap.set('n', ']c', gs.next_hunk, { buffer = bufnr, desc = 'Go to next hunk' })
+  vim.keymap.set('n', '[c', gs.prev_hunk, { buffer = bufnr, desc = 'Go to previous hunk' })
 end
 
 -- Immediately apply global mappings
