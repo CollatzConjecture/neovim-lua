@@ -16,6 +16,8 @@ if not cmp_status_ok then
 end
 
 local keymaps = require('core/keymaps')
+local lspconfig = require('lspconfig')
+local util = require('lspconfig.util')
 
 -- Add additional capabilities supported by nvim-cmp
 local capabilities = vim.lsp.protocol.make_client_capabilities()
@@ -59,6 +61,12 @@ local on_attach = function(client, bufnr)
       },
     })
   end
+
+  -- Avoid conflicts with external formatters like Prettier
+  if client.name == 'ts_ls' then
+    client.server_capabilities.documentFormattingProvider = false
+    client.server_capabilities.documentRangeFormattingProvider = false
+  end
 end
 
 -----------------------------------------------------------
@@ -71,6 +79,7 @@ local servers = {
   'html',      -- HTML
   'cssls',     -- CSS
   'ts_ls',     -- TypeScript/JavaScript
+  'eslint',    -- ESLint (project-local)
   'lua_ls',    -- Lua
 }
 
@@ -81,7 +90,7 @@ require('mason-lspconfig').setup({
     -- Default handler for all servers
     function(server_name)
       if server_name == 'lua_ls' then
-        require('lspconfig')[server_name].setup({
+        lspconfig[server_name].setup({
           on_attach = on_attach,
           capabilities = capabilities,
           settings = {
@@ -97,10 +106,36 @@ require('mason-lspconfig').setup({
           },
         })
       else
-        require('lspconfig')[server_name].setup({
-          on_attach = on_attach,
-          capabilities = capabilities,
-        })
+        if server_name == 'ts_ls' then
+          lspconfig[server_name].setup({
+            on_attach = on_attach,
+            capabilities = capabilities,
+            root_dir = util.root_pattern('tsconfig.json', 'tsconfig.base.json', 'jsconfig.json', 'package.json', '.git'),
+            single_file_support = false,
+          })
+        elseif server_name == 'eslint' then
+          lspconfig[server_name].setup({
+            on_attach = on_attach,
+            capabilities = capabilities,
+            root_dir = util.root_pattern(
+              '.eslintrc',
+              '.eslintrc.js',
+              '.eslintrc.cjs',
+              '.eslintrc.json',
+              '.eslintrc.yaml',
+              '.eslintrc.yml',
+              'eslint.config.js',
+              'eslint.config.cjs',
+              'eslint.config.mjs',
+              'eslint.config.ts'
+            ),
+          })
+        else
+          lspconfig[server_name].setup({
+            on_attach = on_attach,
+            capabilities = capabilities,
+          })
+        end
       end
     end,
   },
