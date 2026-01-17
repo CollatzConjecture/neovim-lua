@@ -18,7 +18,7 @@ nvim_treesitter.setup {
     'angular', 'awk', 'bash', 'c', 'c_sharp', 'cmake', 'cpp', 'css', 'csv',
     'go', 'haskell', 'html', 'http', 'java', 'javascript', 'json', 'lua',
     'luadoc', 'make', 'markdown', 'markdown_inline', 'nix', 'perl', 'python',
-    'ruby', 'rust', 'sql', 'toml', 'typescript', 'vim', 'yaml'
+    'ruby', 'rust', 'sql', 'svelte', 'toml', 'typescript', 'vim', 'yaml'
   },
   sync_install = false,  -- Install parsers asynchronously
   highlight = {

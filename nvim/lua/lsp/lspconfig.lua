@@ -81,6 +81,7 @@ local servers = {
   'ts_ls',     -- TypeScript/JavaScript
   'eslint',    -- ESLint (project-local)
   'lua_ls',    -- Lua
+  'svelte',    -- Svelte
 }
 
 -- Setup mason-lspconfig to auto-install and configure servers
